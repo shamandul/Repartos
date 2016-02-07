@@ -20,7 +20,7 @@
             android:title="@string/txt_productos" />
     </group>
 
-    <item android:title="Communicate">
+    <item android:title="@string/txt_comunicaciones">
         <menu>
 
             <item

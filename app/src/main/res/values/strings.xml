@@ -11,4 +11,7 @@
     <string name="txt_productos">Productos</string>
     <string name="txt_email">Enviar email</string>
     <string name="txt_menu">Menú</string>
+    <string name="txt_comunicaciones">Comunicaciones</string>
+
+
 </resources>
