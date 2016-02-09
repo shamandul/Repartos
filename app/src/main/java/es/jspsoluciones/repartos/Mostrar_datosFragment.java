@@ -29,7 +29,7 @@ public class Mostrar_datosFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_introducir_datos, container, false);
+        View view = inflater.inflate(R.layout.fragment_mostrar_datos_zonas, container, false);
         volver = (ImageButton) view.findViewById(R.id.btn_volver);
         volver.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -75,7 +75,7 @@ public class Mostrar_datosFragment extends Fragment {
      * >Communicating with Other Fragments</a> for more information.
      */
     public interface OnFragmentInteractionListener {
-        // TODO: Update argument type and name
+
         void onFragmentInteraction(Uri uri);
     }
 }

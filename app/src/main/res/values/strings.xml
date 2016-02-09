@@ -17,4 +17,7 @@
     <string name="agregar_zonas">Agregar zonas</string>
     <string name="editar_zonas">Editar Zonas</string>
     <string name="eliminar">Eliminar</string>
+    <string name="txt_nom_zona">Nombre de la zona:</string>
+    <string name="guardar">Guardar</string>
+
 </resources>
