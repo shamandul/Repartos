@@ -39,7 +39,7 @@ public class zonasFragment extends Fragment {
             public void onClick(View v) {
                 FragmentManager fragmentManager = getFragmentManager();
                 FragmentTransaction transation = fragmentManager.beginTransaction();
-                Introducir_datosFragment fragment = new Introducir_datosFragment();
+                Mostrar_datosFragment fragment = new Mostrar_datosFragment();
                 transation.add(R.id.zonasfragment, fragment);
                 transation.addToBackStack(null);
                 transation.commit();

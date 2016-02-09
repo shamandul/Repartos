@@ -13,15 +13,15 @@ import android.widget.ImageButton;
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link Introducir_datosFragment.OnFragmentInteractionListener} interface
+ * {@link Mostrar_datosFragment.OnFragmentInteractionListener} interface
  * to handle interaction events.
  */
-public class Introducir_datosFragment extends Fragment {
+public class Mostrar_datosFragment extends Fragment {
 
     private OnFragmentInteractionListener mListener;
     ImageButton volver;
 
-    public Introducir_datosFragment() {
+    public Mostrar_datosFragment() {
         // Required empty public constructor
     }
 

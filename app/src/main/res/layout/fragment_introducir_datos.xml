@@ -2,7 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="es.jspsoluciones.repartos.Introducir_datosFragment"
+    tools:context=".Mostrar_datosFragment"
     android:background="#464242"
     android:orientation="vertical">
 
