@@ -12,6 +12,9 @@
     <string name="txt_email">Enviar email</string>
     <string name="txt_menu">Menú</string>
     <string name="txt_comunicaciones">Comunicaciones</string>
-
-
+    <string name="btn_volver">Volver</string>
+    <string name="mostrar_zonas">Mostrar Zonas</string>
+    <string name="agregar_zonas">Agregar zonas</string>
+    <string name="editar_zonas">Editar Zonas</string>
+    <string name="eliminar">Eliminar</string>
 </resources>

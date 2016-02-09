@@ -1,5 +1,8 @@
 package es.jspsoluciones.repartos;
 
+
+
+import android.app.FragmentManager;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -80,13 +83,20 @@ public class MainActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_camera) {
-            // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
+        if (id == R.id.nav_pedidos) {
 
-        } else if (id == R.id.nav_slideshow) {
+        } else if (id == R.id.nav_zonas) {
+            FragmentManager fragmentManager = getFragmentManager();
+            android.app.FragmentTransaction transation = fragmentManager.beginTransaction();
+            zonasFragment fragment = new zonasFragment();
+            transation.add(R.id.layout_principal, fragment);
+            transation.addToBackStack(null);
+            transation.commit();
 
-        } else if (id == R.id.nav_manage) {
+
+        } else if (id == R.id.nav_clientes) {
+
+        } else if (id == R.id.nav_productos) {
 
         } else if (id == R.id.nav_send) {
 
