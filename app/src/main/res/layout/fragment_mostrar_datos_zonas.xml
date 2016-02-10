@@ -2,9 +2,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Mostrar_datosFragment"
-    android:background="#464242"
-    android:orientation="vertical">
+    tools:context=".MostrarDatosZonasFragment"
+    android:background="@color/material_grey_600"
+    android:orientation="vertical"
+    style="@style/Base.TextAppearance.AppCompat.Title">
 
     <LinearLayout
         android:orientation="horizontal"
@@ -19,10 +20,7 @@
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:text="@string/txt_zonas"
             android:id="@+id/textView2"
-            android:textColor="#ffffff"
-            android:textSize="@dimen/dim_titulo"
-            android:textAlignment="center"
-            android:textStyle="bold" />
+            android:textColor="#ffffff" />
 
     </LinearLayout>
 
@@ -32,18 +30,6 @@
         android:layout_height="match_parent"
         android:layout_weight="0.5"></LinearLayout>
 
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_weight="2">
 
-        <ImageButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/btn_volver"
-            android:src="@drawable/ic_arrow_back_white_24dp"
-            android:contentDescription="@string/btn_volver" />
-    </LinearLayout>
 
 </LinearLayout>

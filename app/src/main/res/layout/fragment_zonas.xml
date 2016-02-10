@@ -1,16 +1,14 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     tools:context="es.jspsoluciones.repartos.zonasFragment"
     android:id="@+id/zonasfragment"
     android:orientation="vertical">
 
-    <!-- TODO: Update blank fragment layout -->
-
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:orientation="horizontal">
 
         <ImageButton
@@ -34,7 +32,7 @@
         <ImageButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/imageButton3"
+            android:id="@+id/botonEditarZonas"
             android:layout_gravity="right|top"
             android:src="@drawable/ic_edit_location_white_48dp"
             android:layout_weight="1"
@@ -43,7 +41,7 @@
         <ImageButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/imageButton4"
+            android:id="@+id/botonBorrarZonas"
             android:src="@drawable/ic_delete_white_48dp"
             android:layout_weight="1"
             android:contentDescription="@string/eliminar" />

@@ -4,25 +4,26 @@ import android.app.Fragment;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageButton;
 
 
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link introducir_datos_zonasFragment.OnFragmentInteractionListener} interface
+ * {@link MostrarDatosZonasFragment.OnFragmentInteractionListener} interface
  * to handle interaction events.
  */
-public class introducir_datos_zonasFragment extends Fragment {
+public class MostrarDatosZonasFragment extends Fragment {
 
     private OnFragmentInteractionListener mListener;
-    ImageButton volver;
+    ImageButton botonVerZona, botonAgregarZonas, botonEditarZona, botonBorrarZona;
+    FloatingActionButton volver;
 
-    public introducir_datos_zonasFragment() {
+    public MostrarDatosZonasFragment() {
         // Required empty public constructor
     }
 
@@ -30,15 +31,23 @@ public class introducir_datos_zonasFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view=inflater.inflate(R.layout.fragment_introducir_datos_zonas, container, false);
-        volver = (ImageButton) view.findViewById(R.id.btn_volver);
+        View view = inflater.inflate(R.layout.fragment_mostrar_datos_zonas, container, false);
+        volver = (FloatingActionButton) getActivity().findViewById(R.id.fab);
         volver.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                botonVerZona=(ImageButton) getActivity().findViewById(R.id.botonVerZonas);
+                botonAgregarZonas=(ImageButton) getActivity().findViewById(R.id.botonAgregarZonas);
+                botonEditarZona=(ImageButton) getActivity().findViewById(R.id.botonEditarZonas);
+                botonBorrarZona=(ImageButton) getActivity().findViewById(R.id.botonBorrarZonas);
+
+                botonVerZona.setClickable(true);
+                botonAgregarZonas.setEnabled(true);
+                botonEditarZona.setEnabled(true);
+                botonBorrarZona.setEnabled(true);
                 getActivity().getFragmentManager().popBackStack();
             }
         });
-
         return view;
     }
 

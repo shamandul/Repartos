@@ -21,7 +21,7 @@ import android.widget.ImageButton;
 public class zonasFragment extends Fragment {
 
     private OnFragmentInteractionListener mListener;
-    ImageButton botonVerZonas, botonAgregarZonas;
+    ImageButton botonVerZonas, botonAgregarZonas, botonEditarZona, botonBorrarZona;
 
     public zonasFragment() {
         // Required empty public constructor
@@ -36,16 +36,24 @@ public class zonasFragment extends Fragment {
 
         botonVerZonas = (ImageButton) view.findViewById(R.id.botonVerZonas);
         botonAgregarZonas = (ImageButton) view.findViewById(R.id.botonAgregarZonas);
+        botonEditarZona=(ImageButton) view.findViewById(R.id.botonEditarZonas);
+        botonBorrarZona=(ImageButton) view.findViewById(R.id.botonBorrarZonas);
 
         botonVerZonas.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 FragmentManager fragmentManager = getFragmentManager();
                 FragmentTransaction transation = fragmentManager.beginTransaction();
-                Mostrar_datosFragment fragment = new Mostrar_datosFragment();
+                MostrarDatosZonasFragment fragment = new MostrarDatosZonasFragment();
                 transation.add(R.id.zonasfragment, fragment);
                 transation.addToBackStack(null);
                 transation.commit();
+
+                botonVerZonas.setClickable(false);
+
+                botonAgregarZonas.setEnabled(false);
+                botonBorrarZona.setEnabled(false);
+                botonEditarZona.setEnabled(false);
             }
         });
 
@@ -54,10 +62,52 @@ public class zonasFragment extends Fragment {
             public void onClick(View v) {
                 FragmentManager fragmentManager = getFragmentManager();
                 FragmentTransaction transation = fragmentManager.beginTransaction();
-                introducir_datos_zonasFragment fragment = new introducir_datos_zonasFragment();
+                IntroducirDatosZonasFragment fragment = new IntroducirDatosZonasFragment();
                 transation.add(R.id.zonasfragment, fragment);
                 transation.addToBackStack(null);
                 transation.commit();
+
+                botonAgregarZonas.setClickable(false);
+
+                botonVerZonas.setEnabled(false);
+                botonBorrarZona.setEnabled(false);
+                botonEditarZona.setEnabled(false);
+            }
+        });
+
+        botonEditarZona.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FragmentManager fragmentManager = getFragmentManager();
+                FragmentTransaction transation = fragmentManager.beginTransaction();
+                EditarDatosZonasFragment fragment = new EditarDatosZonasFragment();
+                transation.add(R.id.zonasfragment, fragment);
+                transation.addToBackStack(null);
+                transation.commit();
+
+                botonEditarZona.setClickable(false);
+
+                botonVerZonas.setEnabled(false);
+                botonAgregarZonas.setEnabled(false);
+                botonBorrarZona.setEnabled(false);
+            }
+        });
+
+        botonBorrarZona.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FragmentManager fragmentManager = getFragmentManager();
+                FragmentTransaction transation = fragmentManager.beginTransaction();
+                BorrarDatosZonasFragment fragment = new BorrarDatosZonasFragment ();
+                transation.add(R.id.zonasfragment, fragment);
+                transation.addToBackStack(null);
+                transation.commit();
+
+                botonBorrarZona.setClickable(false);
+
+                botonVerZonas.setEnabled(false);
+                botonAgregarZonas.setEnabled(false);
+                botonEditarZona.setEnabled(false);
             }
         });
 
@@ -65,7 +115,7 @@ public class zonasFragment extends Fragment {
         return view;
     }
 
-    // TODO: Rename method, update argument and hook method into UI event
+
     public void onButtonPressed(Uri uri) {
         if (mListener != null) {
             mListener.onFragmentInteraction(uri);
@@ -100,7 +150,7 @@ public class zonasFragment extends Fragment {
      * >Communicating with Other Fragments</a> for more information.
      */
     public interface OnFragmentInteractionListener {
-        // TODO: Update argument type and name
+
         void onFragmentInteraction(Uri uri);
     }
 }
