@@ -4,9 +4,11 @@ import android.app.Fragment;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 
 
 /**
@@ -18,6 +20,8 @@ import android.view.ViewGroup;
 public class BorrarDatosZonasFragment extends Fragment {
 
     private OnFragmentInteractionListener mListener;
+    ImageButton botonVerZonas, botonAgregarZona, botonEditarZona, botonBorrarZona;
+    FloatingActionButton volver;
 
     public BorrarDatosZonasFragment() {
         // Required empty public constructor
@@ -27,8 +31,27 @@ public class BorrarDatosZonasFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_borrar_datos_zonas, container, false);
+        View view=inflater.inflate(R.layout.fragment_borrar_datos_zonas, container, false);
+
+        volver = (FloatingActionButton) getActivity().findViewById(R.id.fab);
+        volver.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                botonVerZonas=(ImageButton) getActivity().findViewById(R.id.botonVerZonas);
+                botonEditarZona=(ImageButton) getActivity().findViewById(R.id.botonEditarZonas);
+                botonBorrarZona=(ImageButton) getActivity().findViewById(R.id.botonBorrarZonas);
+                botonAgregarZona=(ImageButton) getActivity().findViewById(R.id.botonAgregarZonas);
+
+                botonBorrarZona.setClickable(true);
+                botonVerZonas.setEnabled(true);
+                botonAgregarZona.setEnabled(true);
+                botonEditarZona.setEnabled(true);
+
+                getActivity().getFragmentManager().popBackStack();
+            }
+        });
+
+        return view;
     }
 
 
