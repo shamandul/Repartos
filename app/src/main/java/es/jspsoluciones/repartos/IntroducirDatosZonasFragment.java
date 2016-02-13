@@ -2,13 +2,18 @@ package es.jspsoluciones.repartos;
 
 import android.app.Fragment;
 import android.content.Context;
+import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageButton;
+
+import java.sql.SQLException;
 
 
 /**
@@ -22,6 +27,14 @@ public class IntroducirDatosZonasFragment extends Fragment {
     private OnFragmentInteractionListener mListener;
     ImageButton botonVerZonas, botonAgregarZona, botonEditarZona, botonBorrarZona;
     FloatingActionButton volver;
+    Button guardar;
+    EditText nombreZona;
+    Context context;
+    RepartosDBAdapter db;
+
+    /**
+     * Construtor
+     */
     public IntroducirDatosZonasFragment() {
         // Required empty public constructor
     }
@@ -30,8 +43,8 @@ public class IntroducirDatosZonasFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view=inflater.inflate(R.layout.fragment_introducir_datos_zonas, container, false);
-
+        final View view=inflater.inflate(R.layout.fragment_introducir_datos_zonas, container, false);
+       // db = new RepartosDBAdapter(view.);
         volver = (FloatingActionButton) getActivity().findViewById(R.id.fab);
         volver.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -47,6 +60,21 @@ public class IntroducirDatosZonasFragment extends Fragment {
                 botonBorrarZona.setEnabled(true);
 
                 getActivity().getFragmentManager().popBackStack();
+            }
+        });
+        guardar = (Button) view.findViewById(R.id.btn_guardar_agregar_zona);
+        nombreZona = (EditText) view.findViewById(R.id.et_nom_zona);
+        guardar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                db = new RepartosDBAdapter(v.getContext());
+                try {
+                    db.abrir();
+                    db.insertarZona(nombreZona.getText().toString());
+                    db.cerrar();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
             }
         });
 
