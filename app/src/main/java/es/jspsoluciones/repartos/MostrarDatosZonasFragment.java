@@ -71,6 +71,10 @@ public class MostrarDatosZonasFragment extends Fragment {
         return view;
     }
 
+    /**
+     * Método que nos permite leer de la base de datos
+     * @param context
+     */
     private void leerBD(Context context){
         db = new RepartosDBAdapter(context);
         try {
@@ -82,6 +86,10 @@ public class MostrarDatosZonasFragment extends Fragment {
         }
 
     }
+
+    /**
+     * Método que nos permite rellenar los datos en el arrayList
+     */
     private void rellenarDatos(){
         cursor=db.obtenerZonas();
         listaRegistros.clear();

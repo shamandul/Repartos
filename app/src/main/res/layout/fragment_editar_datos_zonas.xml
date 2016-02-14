@@ -18,11 +18,12 @@
         android:textColor="#ffffff"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:layout_margin="10dp" />
-
+    <View android:layout_height="2dip" android:layout_width="wrap_content"
+        android:background="@color/colorAceptar" />
     <ListView
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:id="@+id/listViewZona" />
+        android:id="@+id/listaElementoZonaEditar" />
 
 
 </LinearLayout>

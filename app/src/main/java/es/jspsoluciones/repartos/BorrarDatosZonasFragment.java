@@ -2,6 +2,7 @@ package es.jspsoluciones.repartos;
 
 import android.app.Fragment;
 import android.content.Context;
+import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -9,6 +10,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
+import android.widget.ListView;
+
+import java.sql.SQLException;
+import java.util.ArrayList;
 
 
 /**
@@ -20,8 +25,15 @@ import android.widget.ImageButton;
 public class BorrarDatosZonasFragment extends Fragment {
 
     private OnFragmentInteractionListener mListener;
-    ImageButton botonVerZonas, botonAgregarZona, botonEditarZona, botonBorrarZona;
-    FloatingActionButton volver;
+    private ImageButton botonVerZonas, botonAgregarZona, botonEditarZona, botonBorrarZona;
+    private FloatingActionButton volver;
+    private ListView listaElement;
+    private RepartosDBAdapter db;
+    private Cursor cursor;
+    private ArrayList<Zonas> listaRegistros= new ArrayList<>();
+    private Zonas zonas;
+    private AdaptadorZonas adaptador=null;
+    private Context context;
 
     public BorrarDatosZonasFragment() {
         // Required empty public constructor
@@ -34,6 +46,12 @@ public class BorrarDatosZonasFragment extends Fragment {
         View view=inflater.inflate(R.layout.fragment_borrar_datos_zonas, container, false);
 
         volver = (FloatingActionButton) getActivity().findViewById(R.id.fab);
+        listaElement = (ListView) view.findViewById(R.id.listaElementoZonaBorrar);
+        context=view.getContext();
+        leerBD(context);
+        //Llenamos el adaptador
+        adaptador = new AdaptadorZonas(context,listaRegistros);
+        listaElement.setAdapter(adaptador);
         volver.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -54,6 +72,41 @@ public class BorrarDatosZonasFragment extends Fragment {
         return view;
     }
 
+    /**
+     * Método que nos permite leer de la base de datos
+     * @param context
+     */
+    private void leerBD(Context context){
+        db = new RepartosDBAdapter(context);
+        try {
+            db.abrir();
+            rellenarDatos();
+            db.cerrar();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    /**
+     * Método que nos permite rellenar los datos en el arrayList
+     */
+    private void rellenarDatos(){
+        cursor=db.obtenerZonas();
+        listaRegistros.clear();
+
+        getLoaderManager();
+        //startManagingCursor(cursor);// con esto decimos que cierre el Cursor cuando cierre la app
+        if(cursor.moveToFirst()){ //vemos si hay algun elemento el la tabla
+            // Si hay elementos  en la tabla guarda el Campo Nombre en el arrayList listado
+            do{
+                zonas = new Zonas();
+                //zonas.set_idZona(cursor.getInt(cursor.getColumnIndex(db.)));
+                zonas.setNombreZona(cursor.getString(cursor.getColumnIndex(db.CAMPO_NOMBREZONA)));
+                listaRegistros.add(zonas);
+            }while(cursor.moveToNext());
+        }
+    }
 
     public void onButtonPressed(Uri uri) {
         if (mListener != null) {
@@ -91,5 +144,20 @@ public class BorrarDatosZonasFragment extends Fragment {
     public interface OnFragmentInteractionListener {
 
         void onFragmentInteraction(Uri uri);
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        if(db!=null){
+            db.cerrar();
+        }
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        leerBD(context);
+        adaptador.notifyDataSetChanged();
     }
 }
