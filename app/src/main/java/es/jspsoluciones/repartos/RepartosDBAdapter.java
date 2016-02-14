@@ -12,7 +12,7 @@ import java.sql.SQLException;
  * Created by jesus on 11/02/16.
  */
 public class RepartosDBAdapter {
-    private static final String CAMPO_IDZONA = "_idZona";
+    public static final String CAMPO_IDZONA = "_idZona";
     public final String CAMPO_NOMBREZONA = "nombreZona";
     private static final String TABLA_BD = "zonas";
     private final Context context;

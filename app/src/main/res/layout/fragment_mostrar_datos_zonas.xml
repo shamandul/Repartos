@@ -7,29 +7,26 @@
     android:orientation="vertical"
     style="@style/Base.TextAppearance.AppCompat.Title">
 
-    <LinearLayout
-        android:orientation="horizontal"
+    <TextView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:baselineAligned="false"
-        android:layout_weight="2">
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="@string/txt_zonas"
-            android:id="@+id/textView2"
-            android:textColor="#ffffff" />
-
-    </LinearLayout>
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="@string/txt_zonas"
+        android:id="@+id/textView2"
+        android:textColor="#ffffff" />
 
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_weight="0.5"></LinearLayout>
+        android:layout_height="match_parent">
 
+        <View android:layout_height="2dip" android:layout_width="wrap_content"
+            android:background="@color/colorAceptar" />
 
+        <ListView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/listaElementoZonaMostrar" />
+    </LinearLayout>
 
 </LinearLayout>

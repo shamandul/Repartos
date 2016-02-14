@@ -6,12 +6,14 @@ import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.Toast;
 
 import java.sql.SQLException;
 
@@ -72,9 +74,13 @@ public class IntroducirDatosZonasFragment extends Fragment {
                     db.abrir();
                     db.insertarZona(nombreZona.getText().toString());
                     db.cerrar();
+                    Snackbar.make(v, "Se ha guardado la Zona correctamente", Snackbar.LENGTH_LONG)
+                            .setAction("Action", null).show();
+                    nombreZona.setText("");
                 } catch (SQLException e) {
                     e.printStackTrace();
                 }
+
             }
         });
 
@@ -119,4 +125,6 @@ public class IntroducirDatosZonasFragment extends Fragment {
 
         void onFragmentInteraction(Uri uri);
     }
+
+
 }

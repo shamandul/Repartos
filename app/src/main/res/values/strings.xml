@@ -21,5 +21,6 @@
     <string name="guardar">Guardar</string>
     <string name="modificar_zona">Modificar zona</string>
     <string name="eliminar_zona">Eliminar zona</string>
+    <string name="iconoZona">Icono de Zona</string>
 
 </resources>
