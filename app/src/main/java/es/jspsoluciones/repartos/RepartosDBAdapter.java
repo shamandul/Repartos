@@ -12,7 +12,7 @@ import java.sql.SQLException;
  * Created by jesus on 11/02/16.
  */
 public class RepartosDBAdapter {
-    public static final String CAMPO_IDZONA = "_idZona";
+    public final String CAMPO_IDZONA = "_idZona";
     public final String CAMPO_NOMBREZONA = "nombreZona";
     private static final String TABLA_BD = "zonas";
     private final Context context;
@@ -63,13 +63,13 @@ public class RepartosDBAdapter {
      * Método que nos devuelve la id de la zona
      * @return
      */
-    public static String getCampoId() {
+    public  String getCampoId() {
         return CAMPO_IDZONA;
     }
 
     public void insertarZona(String nombreZona){
 
-        String sentencia="INSERT INTO zonas(nombreZona) VALUES('" + nombreZona + "')";
+        String sentencia="INSERT INTO zonas(_idZona,nombreZona) VALUES('"+getCampoId()+"','" + nombreZona + "')";
         ContentValues datos = new ContentValues();
         datos.put(CAMPO_NOMBREZONA, nombreZona);
         basedatos.insert(TABLA_BD, null, datos);
@@ -78,7 +78,7 @@ public class RepartosDBAdapter {
 
     public static boolean existeBD(){
         SQLiteDatabase sqliteDB = null;
-        String myPath ="/data/data/es.jspsoluciones.repartos/databases/dbpadelone.db";
+        String myPath ="/data/data/es.jspsoluciones.repartos/databases/RepartosDB.db";
         try{
             sqliteDB = SQLiteDatabase.openDatabase(myPath, null, SQLiteDatabase.OPEN_READONLY);
         }catch(SQLiteException e){
@@ -88,5 +88,14 @@ public class RepartosDBAdapter {
             sqliteDB.close();
         }
         return sqliteDB != null ? true : false;
+    }
+    /**
+     * Metodo que nos permite borrar una Zona
+     * @param id
+     */
+    public void borrarZona(int id){
+
+        basedatos.delete(TABLA_BD,"_idZona="+id, null);
+
     }
 }

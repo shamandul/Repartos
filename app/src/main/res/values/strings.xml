@@ -22,5 +22,9 @@
     <string name="modificar_zona">Modificar zona</string>
     <string name="eliminar_zona">Eliminar zona</string>
     <string name="iconoZona">Icono de Zona</string>
-
+    <string name="txt_titulo_alerta">Atención</string>
+    <string name="txt_texto_alerta">¿Estás seguro de que quieres eliminar el registro?</string>
+    <string name="txt_item_borrado">El registro ha sido eliminado</string>
+    <string name="txt_boton_no">Cancelar</string>
+    <string name="txt_btn_aceptar">Aceptar</string>
 </resources>

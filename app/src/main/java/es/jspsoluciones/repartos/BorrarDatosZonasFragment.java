@@ -1,16 +1,22 @@
 package es.jspsoluciones.repartos;
 
+import android.app.AlertDialog;
+import android.app.Dialog;
 import android.app.Fragment;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ImageButton;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -22,7 +28,7 @@ import java.util.ArrayList;
  * {@link BorrarDatosZonasFragment.OnFragmentInteractionListener} interface
  * to handle interaction events.
  */
-public class BorrarDatosZonasFragment extends Fragment {
+public class BorrarDatosZonasFragment extends Fragment implements AdapterView.OnItemLongClickListener {
 
     private OnFragmentInteractionListener mListener;
     private ImageButton botonVerZonas, botonAgregarZona, botonEditarZona, botonBorrarZona;
@@ -34,6 +40,7 @@ public class BorrarDatosZonasFragment extends Fragment {
     private Zonas zonas;
     private AdaptadorZonas adaptador=null;
     private Context context;
+    private int idElemento;
 
     public BorrarDatosZonasFragment() {
         // Required empty public constructor
@@ -52,6 +59,7 @@ public class BorrarDatosZonasFragment extends Fragment {
         //Llenamos el adaptador
         adaptador = new AdaptadorZonas(context,listaRegistros);
         listaElement.setAdapter(adaptador);
+        listaElement.setOnItemLongClickListener(this);
         volver.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -81,11 +89,11 @@ public class BorrarDatosZonasFragment extends Fragment {
         try {
             db.abrir();
             rellenarDatos();
-            db.cerrar();
         } catch (SQLException e) {
             e.printStackTrace();
         }
 
+        db.cerrar();
     }
 
     /**
@@ -101,7 +109,7 @@ public class BorrarDatosZonasFragment extends Fragment {
             // Si hay elementos  en la tabla guarda el Campo Nombre en el arrayList listado
             do{
                 zonas = new Zonas();
-                //zonas.set_idZona(cursor.getInt(cursor.getColumnIndex(db.)));
+                zonas.set_idZona(cursor.getInt(cursor.getColumnIndex(db.CAMPO_IDZONA)));
                 zonas.setNombreZona(cursor.getString(cursor.getColumnIndex(db.CAMPO_NOMBREZONA)));
                 listaRegistros.add(zonas);
             }while(cursor.moveToNext());
@@ -160,4 +168,57 @@ public class BorrarDatosZonasFragment extends Fragment {
         leerBD(context);
         adaptador.notifyDataSetChanged();
     }
+    @Override
+    /**
+     * Método que nos permite controlar el click Largo en un elemento de la lista
+     */
+    public boolean onItemLongClick(AdapterView<?> arg0, View vista, int posicion,
+                                   long arg3) {
+        idElemento = listaRegistros.get(posicion).get_idZona();
+        Dialog dialogoBorrar = null;
+        dialogoBorrar = dialogo(context);
+        dialogoBorrar.show();
+
+        return true;
+    }
+    private void borrarElemento(Context context){
+        db = new RepartosDBAdapter(context);
+        try {
+            db.abrir();
+            db.borrarZona(idElemento);
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+        db.cerrar();
+
+        //Toast.makeText(context, R.string.txt_item_borrado, Toast.LENGTH_SHORT).show();
+        Snackbar.make(getView(), "Se ha borrado la Zona correctamente", Snackbar.LENGTH_LONG)
+                .setAction("Action", null).show();
+        leerBD(context);
+        adaptador.notifyDataSetChanged();
+    }
+    private Dialog dialogo(final Context context){
+
+        AlertDialog.Builder alerta = new AlertDialog.Builder(context);
+        alerta.setTitle(R.string.txt_titulo_alerta);
+        alerta.setMessage(R.string.txt_texto_alerta);
+        alerta.setPositiveButton(R.string.txt_btn_aceptar, new DialogInterface.OnClickListener() {
+
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+                borrarElemento(context);
+            }
+        });
+        alerta.setNegativeButton(R.string.txt_boton_no, new DialogInterface.OnClickListener() {
+
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+
+            }
+        });
+        return alerta.create();
+    }
+
 }
