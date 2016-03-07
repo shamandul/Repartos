@@ -1,0 +1,148 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    tools:context="es.jspsoluciones.repartos.clientes.IntroducirDatosClientesFragment"
+    android:orientation="vertical"
+    android:background="@color/lightBlue_50">
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="@string/agregar_cliente"
+            android:id="@+id/textView2"
+            android:textColor="@color/fondo"
+            android:textIsSelectable="false"
+            style="@style/Base.TextAppearance.AppCompat.Title"
+            android:layout_margin="10dp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/imageView3"
+            android:src="@drawable/ic_person_black_24dp"
+            android:contentDescription="@string/res_icono_cliente" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/et_nom_cliente"
+            android:editable="true"
+            android:inputType="text"
+            android:layout_gravity="left"
+            android:layout_margin="20dp"
+            android:hint="@string/txt_nombre_cliente" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/imageView4"
+            android:src="@drawable/ic_mood_black_24dp"
+            android:contentDescription="@string/res_icono_contacto" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/et_contacto"
+            android:inputType="text"
+            android:editable="true"
+            android:layout_gravity="left"
+            android:layout_margin="20dp"
+            android:hint="@string/hint_contacto" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/imageView5"
+            android:src="@drawable/ic_place_black_24dp"
+            android:contentDescription="@string/res_direccion" />
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/et_direccion"
+            android:inputType="text"
+            android:editable="true"
+            android:layout_gravity="left"
+            android:layout_margin="20dp"
+            android:hint="@string/hint_direccion" />
+    </LinearLayout>
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/imageView6"
+            android:src="@drawable/ic_call_black_24dp"
+            android:contentDescription="@string/res_telefono" />
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/et_telefono"
+            android:editable="true"
+            android:layout_gravity="left"
+            android:layout_margin="20dp"
+            android:hint="@string/hint_telefono"
+            android:inputType="phone" />
+    </LinearLayout>
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/imageView7"
+            android:src="@drawable/ic_mail_outline_black_24dp"
+            android:contentDescription="@string/res_icono_correo" />
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/et_email"
+            android:editable="true"
+            android:layout_gravity="left"
+            android:layout_margin="20dp"
+            android:inputType="textEmailAddress"
+            android:hint="Correo electrónico" />
+    </LinearLayout>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/guardar"
+        android:background="#13cb16"
+        android:layout_marginBottom="46dp"
+        style="@style/Base.Widget.AppCompat.Button.Colored"
+        android:layout_gravity="center_horizontal"
+        android:id="@+id/btn_guardar_agregar_cliente" />
+
+</LinearLayout>

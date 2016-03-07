@@ -2,16 +2,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MostrarDatosZonasFragment"
-    android:background="@color/lightBlue_50"
+    tools:context="es.jspsoluciones.repartos.clientes.MostrarDatosClientesFragment"
     android:orientation="vertical"
-    style="@style/Base.TextAppearance.AppCompat.Title">
+    android:background="@color/lightBlue_50">
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="@string/txt_zonas"
+        android:text="@string/txt_clientes"
         android:id="@+id/textView2"
         android:textColor="@color/fondo" />
 
@@ -26,7 +25,7 @@
         <ListView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/listaElementoZonaMostrar" />
+            android:id="@+id/listaElementoClientesMostrar" />
     </LinearLayout>
 
 </LinearLayout>

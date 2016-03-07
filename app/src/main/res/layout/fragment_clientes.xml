@@ -1,0 +1,49 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/clientesfragment"
+    tools:context="es.jspsoluciones.repartos.clientes.ClientesFragment"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/botonVerClientes"
+            android:layout_gravity="left|top"
+            android:src="@drawable/ic_visibility_white_48dp"
+            android:layout_weight="1"
+            android:contentDescription="@string/mostrar_clientes" />
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/botonAgregarClientes"
+            android:layout_gravity="center_horizontal|top"
+            android:src="@drawable/ic_person_add_white_48dp"
+            android:layout_weight="1"
+            android:contentDescription="@string/agregar_clientes" />
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/botonEditarClientes"
+            android:layout_gravity="right|top"
+            android:src="@drawable/ic_border_color_white_48dp"
+            android:layout_weight="1"
+            android:contentDescription="@string/modificar_cliente" />
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/botonBorrarclientes"
+            android:src="@drawable/ic_delete_white_48dp"
+            android:layout_weight="1"
+            android:contentDescription="@string/eliminar" />
+    </LinearLayout>
+</LinearLayout>

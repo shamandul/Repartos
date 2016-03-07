@@ -3,6 +3,7 @@ package es.jspsoluciones.repartos;
 
 
 import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -15,6 +16,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+
+import es.jspsoluciones.repartos.clientes.ClientesFragment;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -30,6 +33,8 @@ public class MainActivity extends AppCompatActivity
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                getFragmentManager().popBackStack();
                 Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
             }
@@ -86,15 +91,24 @@ public class MainActivity extends AppCompatActivity
         if (id == R.id.nav_pedidos) {
 
         } else if (id == R.id.nav_zonas) {
+
+            eliminarFragment();
             FragmentManager fragmentManager = getFragmentManager();
             android.app.FragmentTransaction transation = fragmentManager.beginTransaction();
             zonasFragment fragment = new zonasFragment();
-            transation.add(R.id.layout_principal, fragment);
+            transation.add(R.id.layout_principal, fragment,"zonas");
             transation.addToBackStack(null);
             transation.commit();
 
 
         } else if (id == R.id.nav_clientes) {
+            eliminarFragment();
+            FragmentManager fragmentManager = getFragmentManager();
+            android.app.FragmentTransaction transation = fragmentManager.beginTransaction();
+            ClientesFragment fragment = new ClientesFragment();
+            transation.add(R.id.layout_principal, fragment, "clientes");
+            transation.addToBackStack(null);
+            transation.commit();
 
         } else if (id == R.id.nav_productos) {
 
@@ -105,5 +119,21 @@ public class MainActivity extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+    private void eliminarFragment(){
+        FragmentManager fm = getFragmentManager();
+        zonasFragment zonas = (zonasFragment) fm.findFragmentByTag("zonas");
+        ClientesFragment clientes = (ClientesFragment) fm.findFragmentByTag("clientes");
+
+        if(zonas!=null) {
+            FragmentTransaction ft = fm.beginTransaction();
+            ft.remove(zonas);
+            ft.commit();
+        }
+        if(clientes!=null) {
+            FragmentTransaction ft = fm.beginTransaction();
+            ft.remove(clientes);
+            ft.commit();
+        }
     }
 }

@@ -27,4 +27,17 @@
     <string name="txt_item_borrado">El registro ha sido eliminado</string>
     <string name="txt_boton_no">Cancelar</string>
     <string name="txt_btn_aceptar">Aceptar</string>
+    <string name="mostrar_clientes">Mostrar Clientes</string>
+    <string name="agregar_clientes">Agregar clientes</string>
+    <string name="modificar_cliente">Modificar cliente</string>
+    <string name="agregar_cliente">Agregar Cliente</string>
+    <string name="txt_nombre_cliente">Nombre Cliente</string>
+    <string name="res_icono_cliente">Icono cliente</string>
+    <string name="res_icono_contacto">Icono contacto</string>
+    <string name="hint_contacto">Contacto</string>
+    <string name="res_direccion">Icono Direccion</string>
+    <string name="hint_direccion">Dirección</string>
+    <string name="res_telefono">Icono teléfono</string>
+    <string name="hint_telefono">Teléfono</string>
+    <string name="res_icono_correo">Icono correo</string>
 </resources>

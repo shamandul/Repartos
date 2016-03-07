@@ -1,4 +1,4 @@
-package es.jspsoluciones.repartos;
+package es.jspsoluciones.repartos.clientes;
 
 import android.app.Fragment;
 import android.app.FragmentManager;
@@ -6,26 +6,26 @@ import android.app.FragmentTransaction;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 
+import es.jspsoluciones.repartos.R;
+
 
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link zonasFragment.OnFragmentInteractionListener} interface
+ * {@link ClientesFragment.OnFragmentInteractionListener} interface
  * to handle interaction events.
  */
-public class zonasFragment extends Fragment {
+public class ClientesFragment extends Fragment {
 
     private OnFragmentInteractionListener mListener;
-    private ImageButton botonVerZonas, botonAgregarZonas, botonEditarZona, botonBorrarZona;
+    private ImageButton botonVerCliente, botonAgregarCliente, botonEditarCliente, botonBorrarCliente;
 
-
-    public zonasFragment() {
+    public ClientesFragment() {
         // Required empty public constructor
     }
 
@@ -33,83 +33,82 @@ public class zonasFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        // Inflate the layout for this fragment
 
-        View view= inflater.inflate(R.layout.fragment_zonas, container, false);
+        View view= inflater.inflate(R.layout.fragment_clientes, container, false);
 
-        botonVerZonas = (ImageButton) view.findViewById(R.id.botonVerZonas);
-        botonAgregarZonas = (ImageButton) view.findViewById(R.id.botonAgregarZonas);
-        botonEditarZona=(ImageButton) view.findViewById(R.id.botonEditarZonas);
-        botonBorrarZona=(ImageButton) view.findViewById(R.id.botonBorrarZonas);
+        botonVerCliente = (ImageButton) view.findViewById(R.id.botonVerClientes);
+        botonAgregarCliente = (ImageButton) view.findViewById(R.id.botonAgregarClientes);
+        botonEditarCliente=(ImageButton) view.findViewById(R.id.botonEditarClientes);
+        botonBorrarCliente=(ImageButton) view.findViewById(R.id.botonBorrarclientes);
 
-        botonVerZonas.setOnClickListener(new View.OnClickListener() {
+        botonVerCliente.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 FragmentManager fragmentManager = getFragmentManager();
                 FragmentTransaction transation = fragmentManager.beginTransaction();
-                MostrarDatosZonasFragment fragment = new MostrarDatosZonasFragment();
-                transation.add(R.id.zonasfragment, fragment);
+                MostrarDatosClientesFragment fragment = new MostrarDatosClientesFragment();
+                transation.add(R.id.clientesfragment, fragment);
                 transation.addToBackStack(null);
                 transation.commit();
 
-                botonVerZonas.setClickable(false);
-
-                botonAgregarZonas.setEnabled(false);
-                botonBorrarZona.setEnabled(false);
-                botonEditarZona.setEnabled(false);
+                botonVerCliente.setClickable(false);
+                botonAgregarCliente.setEnabled(false);
+                botonBorrarCliente.setEnabled(false);
+                botonEditarCliente.setEnabled(false);
             }
         });
 
-        botonAgregarZonas.setOnClickListener(new View.OnClickListener() {
+        botonAgregarCliente.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 FragmentManager fragmentManager = getFragmentManager();
                 FragmentTransaction transation = fragmentManager.beginTransaction();
-                IntroducirDatosZonasFragment fragment = new IntroducirDatosZonasFragment();
-                transation.add(R.id.zonasfragment, fragment);
+                IntroducirDatosClientesFragment fragment = new IntroducirDatosClientesFragment();
+                transation.add(R.id.clientesfragment, fragment);
                 transation.addToBackStack(null);
                 transation.commit();
 
-                botonAgregarZonas.setClickable(false);
-
-                botonVerZonas.setEnabled(false);
-                botonBorrarZona.setEnabled(false);
-                botonEditarZona.setEnabled(false);
+                botonAgregarCliente.setClickable(false);
+                botonVerCliente.setEnabled(false);
+                botonBorrarCliente.setEnabled(false);
+                botonEditarCliente.setEnabled(false);
             }
         });
 
-        botonEditarZona.setOnClickListener(new View.OnClickListener() {
+        botonEditarCliente.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 FragmentManager fragmentManager = getFragmentManager();
                 FragmentTransaction transation = fragmentManager.beginTransaction();
-                EditarDatosZonasFragment fragment = new EditarDatosZonasFragment();
-                transation.add(R.id.zonasfragment, fragment);
+                EditarDatosClientesFragment fragment = new EditarDatosClientesFragment();
+                transation.add(R.id.clientesfragment, fragment);
                 transation.addToBackStack(null);
                 transation.commit();
 
-                botonEditarZona.setClickable(false);
+                botonEditarCliente.setClickable(false);
 
-                botonVerZonas.setEnabled(false);
-                botonAgregarZonas.setEnabled(false);
-                botonBorrarZona.setEnabled(false);
+                botonVerCliente.setEnabled(false);
+                botonAgregarCliente.setEnabled(false);
+                botonBorrarCliente.setEnabled(false);
             }
         });
 
-        botonBorrarZona.setOnClickListener(new View.OnClickListener() {
+        botonBorrarCliente.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 FragmentManager fragmentManager = getFragmentManager();
                 FragmentTransaction transation = fragmentManager.beginTransaction();
-                BorrarDatosZonasFragment fragment = new BorrarDatosZonasFragment ();
-                transation.add(R.id.zonasfragment, fragment);
+                BorrarDatosClientesFragment fragment = new BorrarDatosClientesFragment();
+                transation.add(R.id.clientesfragment, fragment);
                 transation.addToBackStack(null);
                 transation.commit();
 
-                botonBorrarZona.setClickable(false);
+                botonBorrarCliente.setClickable(false);
 
-                botonVerZonas.setEnabled(false);
-                botonAgregarZonas.setEnabled(false);
-                botonEditarZona.setEnabled(false);
+                botonVerCliente.setEnabled(false);
+                botonAgregarCliente.setEnabled(false);
+                botonEditarCliente.setEnabled(false);
             }
         });
 

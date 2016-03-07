@@ -1,0 +1,26 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context="es.jspsoluciones.repartos.clientes.BorrarDatosClientesFragment"
+        android:background="@color/lightBlue_50"
+        android:orientation="vertical">
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="@string/eliminar_zona"
+            android:id="@+id/textView5"
+            style="@style/Base.TextAppearance.AppCompat.Title.Inverse"
+            android:layout_margin="10dp" />
+        <View android:layout_height="2dip" android:layout_width="wrap_content"
+            android:background="@color/colorAceptar" />
+        <ListView
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:id="@+id/listaElementoZonaBorrar"
+            android:layout_weight="1"
+            android:layout_margin="10dp" />
+    </LinearLayout>
