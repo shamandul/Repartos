@@ -1,4 +1,4 @@
-package es.jspsoluciones.repartos;
+package es.jspsoluciones.repartos.zonas;
 
 import android.app.Fragment;
 import android.app.FragmentManager;
@@ -6,11 +6,12 @@ import android.app.FragmentTransaction;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
+
+import es.jspsoluciones.repartos.R;
 
 
 /**

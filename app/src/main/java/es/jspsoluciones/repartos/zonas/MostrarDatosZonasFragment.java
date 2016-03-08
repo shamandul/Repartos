@@ -1,4 +1,4 @@
-package es.jspsoluciones.repartos;
+package es.jspsoluciones.repartos.zonas;
 
 import android.app.Fragment;
 import android.content.Context;
@@ -14,6 +14,9 @@ import android.widget.ListView;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
+
+import es.jspsoluciones.repartos.R;
+import es.jspsoluciones.repartos.dbsqlite.RepartosDBAdapter;
 
 
 /**

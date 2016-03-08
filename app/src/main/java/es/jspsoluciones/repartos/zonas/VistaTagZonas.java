@@ -1,4 +1,4 @@
-package es.jspsoluciones.repartos;
+package es.jspsoluciones.repartos.zonas;
 
 import android.widget.TextView;
 

@@ -1,34 +1,31 @@
-package es.jspsoluciones.repartos;
+package es.jspsoluciones.repartos.zonas;
 
-import android.app.AlertDialog;
-import android.app.Dialog;
 import android.app.Fragment;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.ImageButton;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
+
+import es.jspsoluciones.repartos.R;
+import es.jspsoluciones.repartos.dbsqlite.RepartosDBAdapter;
 
 
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link BorrarDatosZonasFragment.OnFragmentInteractionListener} interface
+ * {@link EditarDatosZonasFragment.OnFragmentInteractionListener} interface
  * to handle interaction events.
  */
-public class BorrarDatosZonasFragment extends Fragment implements AdapterView.OnItemLongClickListener {
+public class EditarDatosZonasFragment extends Fragment {
 
     private OnFragmentInteractionListener mListener;
     private ImageButton botonVerZonas, botonAgregarZona, botonEditarZona, botonBorrarZona;
@@ -40,9 +37,8 @@ public class BorrarDatosZonasFragment extends Fragment implements AdapterView.On
     private Zonas zonas;
     private AdaptadorZonas adaptador=null;
     private Context context;
-    private int idElemento;
 
-    public BorrarDatosZonasFragment() {
+    public EditarDatosZonasFragment() {
         // Required empty public constructor
     }
 
@@ -50,16 +46,14 @@ public class BorrarDatosZonasFragment extends Fragment implements AdapterView.On
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view=inflater.inflate(R.layout.fragment_borrar_datos_zonas, container, false);
-
+        View view = inflater.inflate(R.layout.fragment_editar_datos_zonas, container, false);
         volver = (FloatingActionButton) getActivity().findViewById(R.id.fab);
-        listaElement = (ListView) view.findViewById(R.id.listaElementoZonaBorrar);
+        listaElement = (ListView) view.findViewById(R.id.listaElementoZonaEditar);
         context=view.getContext();
         leerBD(context);
         //Llenamos el adaptador
         adaptador = new AdaptadorZonas(context,listaRegistros);
         listaElement.setAdapter(adaptador);
-        listaElement.setOnItemLongClickListener(this);
         volver.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -68,15 +62,14 @@ public class BorrarDatosZonasFragment extends Fragment implements AdapterView.On
                 botonBorrarZona=(ImageButton) getActivity().findViewById(R.id.botonBorrarZonas);
                 botonAgregarZona=(ImageButton) getActivity().findViewById(R.id.botonAgregarZonas);
 
-                botonBorrarZona.setClickable(true);
+                botonEditarZona.setClickable(true);
                 botonVerZonas.setEnabled(true);
                 botonAgregarZona.setEnabled(true);
-                botonEditarZona.setEnabled(true);
+                botonBorrarZona.setEnabled(true);
 
                 getActivity().getFragmentManager().popBackStack();
             }
         });
-
         return view;
     }
 
@@ -89,11 +82,11 @@ public class BorrarDatosZonasFragment extends Fragment implements AdapterView.On
         try {
             db.abrir();
             rellenarDatos();
+            db.cerrar();
         } catch (SQLException e) {
             e.printStackTrace();
         }
 
-        db.cerrar();
     }
 
     /**
@@ -109,7 +102,7 @@ public class BorrarDatosZonasFragment extends Fragment implements AdapterView.On
             // Si hay elementos  en la tabla guarda el Campo Nombre en el arrayList listado
             do{
                 zonas = new Zonas();
-                zonas.set_idZona(cursor.getInt(cursor.getColumnIndex(db.CAMPO_IDZONA)));
+                //zonas.set_idZona(cursor.getInt(cursor.getColumnIndex(db.)));
                 zonas.setNombreZona(cursor.getString(cursor.getColumnIndex(db.CAMPO_NOMBREZONA)));
                 listaRegistros.add(zonas);
             }while(cursor.moveToNext());
@@ -168,57 +161,4 @@ public class BorrarDatosZonasFragment extends Fragment implements AdapterView.On
         leerBD(context);
         adaptador.notifyDataSetChanged();
     }
-    @Override
-    /**
-     * Método que nos permite controlar el click Largo en un elemento de la lista
-     */
-    public boolean onItemLongClick(AdapterView<?> arg0, View vista, int posicion,
-                                   long arg3) {
-        idElemento = listaRegistros.get(posicion).get_idZona();
-        Dialog dialogoBorrar = null;
-        dialogoBorrar = dialogo(context);
-        dialogoBorrar.show();
-
-        return true;
-    }
-    private void borrarElemento(Context context){
-        db = new RepartosDBAdapter(context);
-        try {
-            db.abrir();
-            db.borrarZona(idElemento);
-        }catch (SQLException e){
-            e.printStackTrace();
-        }
-        db.cerrar();
-
-        //Toast.makeText(context, R.string.txt_item_borrado, Toast.LENGTH_SHORT).show();
-        Snackbar.make(getView(), "Se ha borrado la Zona correctamente", Snackbar.LENGTH_LONG)
-                .setAction("Action", null).show();
-        leerBD(context);
-        adaptador.notifyDataSetChanged();
-    }
-    private Dialog dialogo(final Context context){
-
-        AlertDialog.Builder alerta = new AlertDialog.Builder(context);
-        alerta.setTitle(R.string.txt_titulo_alerta);
-        alerta.setMessage(R.string.txt_texto_alerta);
-        alerta.setPositiveButton(R.string.txt_btn_aceptar, new DialogInterface.OnClickListener() {
-
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-
-                borrarElemento(context);
-            }
-        });
-        alerta.setNegativeButton(R.string.txt_boton_no, new DialogInterface.OnClickListener() {
-
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-
-
-            }
-        });
-        return alerta.create();
-    }
-
 }

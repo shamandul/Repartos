@@ -13,7 +13,7 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 
 import es.jspsoluciones.repartos.R;
-import es.jspsoluciones.repartos.RepartosDBAdapter;
+import es.jspsoluciones.repartos.dbsqlite.RepartosDBAdapter;
 
 /**
  * A simple {@link Fragment} subclass.

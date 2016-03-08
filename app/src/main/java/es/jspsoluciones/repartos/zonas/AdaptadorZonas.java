@@ -1,4 +1,4 @@
-package es.jspsoluciones.repartos;
+package es.jspsoluciones.repartos.zonas;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -8,6 +8,8 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+
+import es.jspsoluciones.repartos.R;
 
 /**
  * Created by jesus on 13/02/16.

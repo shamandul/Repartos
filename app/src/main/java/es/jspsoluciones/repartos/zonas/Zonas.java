@@ -1,4 +1,4 @@
-package es.jspsoluciones.repartos;
+package es.jspsoluciones.repartos.zonas;
 
 /**
  * Created by jesus on 13/02/16.

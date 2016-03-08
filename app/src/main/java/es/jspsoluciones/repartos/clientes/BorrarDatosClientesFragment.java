@@ -12,11 +12,9 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.ListView;
 
-import es.jspsoluciones.repartos.AdaptadorZonas;
 import es.jspsoluciones.repartos.R;
-import es.jspsoluciones.repartos.RepartosDBAdapter;
+import es.jspsoluciones.repartos.dbsqlite.RepartosDBAdapter;
 
 
 public class BorrarDatosClientesFragment extends Fragment {

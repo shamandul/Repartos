@@ -1,41 +1,44 @@
-package es.jspsoluciones.repartos;
+package es.jspsoluciones.repartos.zonas;
 
 import android.app.Fragment;
 import android.content.Context;
-import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.ListView;
 
 import java.sql.SQLException;
-import java.util.ArrayList;
+
+import es.jspsoluciones.repartos.R;
+import es.jspsoluciones.repartos.dbsqlite.RepartosDBAdapter;
 
 
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link EditarDatosZonasFragment.OnFragmentInteractionListener} interface
+ * {@link IntroducirDatosZonasFragment.OnFragmentInteractionListener} interface
  * to handle interaction events.
  */
-public class EditarDatosZonasFragment extends Fragment {
+public class IntroducirDatosZonasFragment extends Fragment {
 
     private OnFragmentInteractionListener mListener;
-    private ImageButton botonVerZonas, botonAgregarZona, botonEditarZona, botonBorrarZona;
-    private FloatingActionButton volver;
-    private ListView listaElement;
-    private RepartosDBAdapter db;
-    private Cursor cursor;
-    private ArrayList<Zonas> listaRegistros= new ArrayList<>();
-    private Zonas zonas;
-    private AdaptadorZonas adaptador=null;
-    private Context context;
+    ImageButton botonVerZonas, botonAgregarZona, botonEditarZona, botonBorrarZona;
+    FloatingActionButton volver;
+    Button guardar;
+    EditText nombreZona;
+    Context context;
+    RepartosDBAdapter db;
 
-    public EditarDatosZonasFragment() {
+    /**
+     * Construtor
+     */
+    public IntroducirDatosZonasFragment() {
         // Required empty public constructor
     }
 
@@ -43,14 +46,9 @@ public class EditarDatosZonasFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_editar_datos_zonas, container, false);
+        final View view=inflater.inflate(R.layout.fragment_introducir_datos_zonas, container, false);
+       // db = new RepartosDBAdapter(view.);
         volver = (FloatingActionButton) getActivity().findViewById(R.id.fab);
-        listaElement = (ListView) view.findViewById(R.id.listaElementoZonaEditar);
-        context=view.getContext();
-        leerBD(context);
-        //Llenamos el adaptador
-        adaptador = new AdaptadorZonas(context,listaRegistros);
-        listaElement.setAdapter(adaptador);
         volver.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -59,52 +57,37 @@ public class EditarDatosZonasFragment extends Fragment {
                 botonBorrarZona=(ImageButton) getActivity().findViewById(R.id.botonBorrarZonas);
                 botonAgregarZona=(ImageButton) getActivity().findViewById(R.id.botonAgregarZonas);
 
-                botonEditarZona.setClickable(true);
+                botonAgregarZona.setClickable(true);
                 botonVerZonas.setEnabled(true);
-                botonAgregarZona.setEnabled(true);
+                botonEditarZona.setEnabled(true);
                 botonBorrarZona.setEnabled(true);
 
                 getActivity().getFragmentManager().popBackStack();
             }
         });
+        guardar = (Button) view.findViewById(R.id.btn_guardar_agregar_zona);
+        nombreZona = (EditText) view.findViewById(R.id.et_nom_zona);
+        guardar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                db = new RepartosDBAdapter(v.getContext());
+                try {
+                    db.abrir();
+                    db.insertarZona(nombreZona.getText().toString());
+                    db.cerrar();
+                    Snackbar.make(v, "Se ha guardado la Zona correctamente", Snackbar.LENGTH_LONG)
+                            .setAction("Action", null).show();
+                    nombreZona.setText("");
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+
+            }
+        });
+
         return view;
     }
 
-    /**
-     * Método que nos permite leer de la base de datos
-     * @param context
-     */
-    private void leerBD(Context context){
-        db = new RepartosDBAdapter(context);
-        try {
-            db.abrir();
-            rellenarDatos();
-            db.cerrar();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
-    }
-
-    /**
-     * Método que nos permite rellenar los datos en el arrayList
-     */
-    private void rellenarDatos(){
-        cursor=db.obtenerZonas();
-        listaRegistros.clear();
-
-        getLoaderManager();
-        //startManagingCursor(cursor);// con esto decimos que cierre el Cursor cuando cierre la app
-        if(cursor.moveToFirst()){ //vemos si hay algun elemento el la tabla
-            // Si hay elementos  en la tabla guarda el Campo Nombre en el arrayList listado
-            do{
-                zonas = new Zonas();
-                //zonas.set_idZona(cursor.getInt(cursor.getColumnIndex(db.)));
-                zonas.setNombreZona(cursor.getString(cursor.getColumnIndex(db.CAMPO_NOMBREZONA)));
-                listaRegistros.add(zonas);
-            }while(cursor.moveToNext());
-        }
-    }
 
     public void onButtonPressed(Uri uri) {
         if (mListener != null) {
@@ -144,18 +127,5 @@ public class EditarDatosZonasFragment extends Fragment {
         void onFragmentInteraction(Uri uri);
     }
 
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-        if(db!=null){
-            db.cerrar();
-        }
-    }
 
-    @Override
-    public void onResume() {
-        super.onResume();
-        leerBD(context);
-        adaptador.notifyDataSetChanged();
-    }
 }
